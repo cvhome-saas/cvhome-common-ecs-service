@@ -85,3 +85,7 @@ variable "egress_with_cidr_blocks" {
   type        = list(map(string))
   default     = []
 }
+variable "auto_scale" {
+  type    = bool
+  default = false
+}
