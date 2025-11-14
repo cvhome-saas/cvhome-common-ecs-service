@@ -30,10 +30,14 @@ resource "aws_iam_role_policy" "ecs_task_execution_role_policy" {
           "ecr:BatchCheckLayerAvailability",
           "ecr:GetDownloadUrlForLayer",
           "ecr:BatchGetImage",
-          "logs:CreateLogStream",
-          "logs:PutLogEvents",
+          "cloudwatch:*",
+          "servicediscovery:*",
+          "s3:*",
           "ssm:*",
-          "secretsmanager:*"
+          "rds-db:connect",
+          "secretsmanager:*",
+          "logs:*",
+          "xray:*"
         ]
         Resource : [
           "*"
