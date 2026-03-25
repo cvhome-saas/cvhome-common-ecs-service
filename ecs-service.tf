@@ -68,7 +68,7 @@ module "service_security_group" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 5.0"
 
-  name        = "${var.project}-${var.module_name}-${var.service_name}-sg-${var.env}"
+  name        = "${var.project}-${local.simple_service_name}-sg-${var.env}"
   description = "Postgres db security group"
   vpc_id      = var.vpc_id
 

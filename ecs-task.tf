@@ -1,8 +1,8 @@
 data "aws_region" "current" {}
 locals {
-  short_service       = substr(var.service_name, 0, 20)
-  hash                = substr(md5(var.service_name), 0, 6)
-  simple_service_name = "${local.short_service}-${local.hash}"
+  shorten_module      = substr(var.module_name, 0, 20)
+  module_hash         = substr(md5(var.module_name), 0, 3)
+  simple_service_name = "${local.shorten_module}-${local.module_hash}-${var.service_name}"
 }
 resource "aws_cloudwatch_log_group" "this" {
   name              = "/aws/ecs/${var.project}/${var.env}/${var.module_name}/${var.service_name}"
@@ -12,7 +12,7 @@ resource "aws_cloudwatch_log_group" "this" {
 resource "aws_ecs_task_definition" "this" {
   cpu                      = var.service.cpu
   memory                   = var.service.memory
-  family                   = "${var.module_name}-${var.service_name}-${var.project}-${var.env}"
+  family                   = "${local.simple_service_name}-${var.project}-${var.env}"
   network_mode             = "awsvpc"
   requires_compatibilities = var.requires_compatibilities
   task_role_arn            = aws_iam_role.ecs_task_role.arn
