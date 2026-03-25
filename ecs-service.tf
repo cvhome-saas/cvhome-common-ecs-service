@@ -97,7 +97,7 @@ resource "aws_ecs_service" "this" {
     container_name = var.service.main_container
     # container_port = var.service.main_container_port
   }
-  
+
   dynamic "load_balancer" {
     for_each = var.service.loadbalancer_target_groups
     content {

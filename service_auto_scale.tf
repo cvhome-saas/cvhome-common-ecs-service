@@ -22,8 +22,8 @@ resource "aws_appautoscaling_policy" "ecs_target_tracking_cpu" {
       predefined_metric_type = "ECSServiceAverageCPUUtilization"
     }
 
-    target_value       = 60   # Maintain average CPU around 60%
-    scale_in_cooldown  = 300  # seconds
+    target_value       = 60  # Maintain average CPU around 60%
+    scale_in_cooldown  = 300 # seconds
     scale_out_cooldown = 60
   }
 }
@@ -42,7 +42,7 @@ resource "aws_appautoscaling_policy" "ecs_target_tracking_memory" {
       predefined_metric_type = "ECSServiceAverageMemoryUtilization"
     }
 
-    target_value       = 70   # Maintain average Memory around 70%
+    target_value       = 70 # Maintain average Memory around 70%
     scale_in_cooldown  = 300
     scale_out_cooldown = 60
   }
