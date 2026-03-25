@@ -1,8 +1,6 @@
 data "aws_region" "current" {}
 locals {
-  shorten_module      = substr(var.module_name, 0, 20)
-  module_hash         = substr(md5(var.module_name), 0, 3)
-  simple_service_name = "${local.shorten_module}-${local.module_hash}-${var.service_name}"
+  simple_service_name = "${var.module_name}-${var.service_name}"
 }
 resource "aws_cloudwatch_log_group" "this" {
   name              = "/aws/ecs/${var.project}/${var.env}/${var.module_name}/${var.service_name}"
